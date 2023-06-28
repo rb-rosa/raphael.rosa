@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: docs
+  
+execute:
+  cache: true
+  freeze: auto
+
+
+website:
+  reader-mode: true
+  page-navigation: true
+  title: "RB Rosa"
+  navbar:
+    style: "docked"
+    pinned: true
+    border: false
+    background: "info"
+    search: true
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "Mestrado"
+        menu:
+          - text: "FIP606"
+            file: index.qmd
+            
+            
+       
+    right:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/raphaelfitopatologia
+      - icon: instagram
+        href: https://www.instagram.com/invites/contact/?i=xk2vhn0e4rad&utm_content=2owlczy
+      - icon: github
+        menu:
+          - text: Código fonte
+            url:  https://github.com/rb-rosa
+          - text: Reportar erro
+            url:  mailto:rbarboza.rosa@gmail.com
+  
+
