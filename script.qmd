@@ -1,0 +1,329 @@
+---
+title: "Projeto final"
+format: html
+editor: visual
+
+execute: 
+  freeze: auto
+  cache: true
+  warning: false
+---
+
+# Variável cotilédones
+
+## Análise exploratória dos dados
+
+### Importar dados
+
+```{r}
+library(tidyverse)
+library(readxl)
+cot <- read_excel("dados/cotiledones.xlsx")
+```
+
+### Histograma para visualizar a distribuição dos dados
+
+```{r}
+cot |>
+  ggplot(aes(cot))+
+  geom_histogram(bins = 6,
+                 color = "black", fill = "orange")
+```
+
+### Boxplot para visualizar a distribuição do número de cotilédones por tratamento
+
+```{r}
+cot |> 
+  ggplot(aes(trat, cot)) +
+  geom_boxplot(width = 0.5, color = "black", fill = "gray")+
+  theme_classic()+
+  scale_y_continuous(breaks = seq(0,20,5), limits = c(0, 20))+
+  labs(x = "Tratamentos", y = "Número de cotilédones")
+```
+
+### Número de cotilédones ao longo do tempo
+
+```{r}
+cot2 <- cot |> 
+  group_by(trat, dias) |> 
+  summarize(meancot = mean(cot))
+
+cot2 |> 
+  ggplot(aes(dias, meancot))+
+  geom_line(aes(group = trat, color = trat), size=0.5)+
+  geom_point(aes(fill = trat), shape = 21, alpha = 0.5, size= 3)+
+  scale_x_continuous(breaks = seq(7,23,2), limits = c(7,21))+
+  labs(x = "Dias", y = "Cotilédones", title = '', color = "Tratamentos", fill = "Tratamentos")
+
+
+cot2 |> 
+  ggplot(aes(dias, meancot))+
+  geom_line(size=0.5, color = "black")+
+  geom_point( shape = 21, alpha = 0.5, size= 2)+
+  scale_x_continuous(breaks = seq(7,22,2), limits = c(7,21))+
+  labs(x = "Dias", y = "Cotilédones", title = '')+
+  facet_wrap(~trat)
+```
+
+## Análises estatísticas
+
+```{r}
+teste = lm(cot ~ trat + dias + trat*dias + rep, data = cot)
+car::Anova(teste)
+
+# Resultado: os tratamentos não diferem, são iguais. Apenas o dia tem efeito. Elaborar um modelo novo. 
+```
+
+### Regressão linear simples utilizando a função lm()
+
+Tem-se uma variável quantitativa independente, dias, e uma dependente, cotilédones.
+
+```{r}
+m1 =lm(cot~dias, data=cot)
+summary(m1)
+
+# Resultado: deu efeito de dias
+
+#O código m1 = lm(cot ~ dias, data = cot) realiza uma análise de regressão linear simples utilizando a função lm() no RStudio. Vamos detalhar o código linha por linha:m1 = lm(cot ~ dias, data = cot): Nesta linha, estamos criando um objeto chamado m1 que irá armazenar o modelo de regressão linear. A fórmula cot ~ dias especifica que estamos modelando a variável cot como uma função da variável dias. A opção data = cot indica que os dados a serem utilizados estão no conjunto de dados cot.
+```
+
+### Gráfico do modelo de regressão polinomial de segunda ordem a ser ajustado (quadrático)
+
+```{r}
+#Em resumo, o código abaixo realiza a criação de um gráfico com pontos representando as médias de uma variável meancot para cada valor de dias. Além disso, ele ajusta uma linha suavizada correspondente a um modelo de regressão polinomial de segunda ordem. Modelo curvilinear.
+
+cot3 <- cot |> 
+  group_by(dias) |> 
+  summarize(meancot = mean(cot))
+
+cot3 |> 
+  ggplot(aes(dias, meancot))+
+  geom_point()+
+  scale_x_continuous(breaks = seq(7,22,2), limits = c(7,21))+
+  geom_smooth(se = F, formula = y ~ poly(x, 2), method = "lm", color = "black")+
+  theme_minimal()
+```
+
+### Ajustar modelo
+
+```{r, echo=FALSE}
+cot$dias2 = cot$dias^2 #criar variável quadrática dias2
+m2 =lm(cot~dias + dias2, data=cot)
+summary(m2)
+```
+
+### AIC
+
+```{r}
+AIC(m1, m2)
+
+# A função AIC() é usada para calcular o Critério de Informação de Akaike (AIC, Akaike Information Criterion) para um ou mais modelos. O AIC é uma medida que avalia a qualidade do ajuste de um modelo, levando em consideração a capacidade de ajuste e a complexidade do modelo. A função AIC() retorna o valor do AIC para cada modelo especificado. Quanto menor o valor do AIC, melhor é o ajuste do modelo. Portanto, você pode comparar os valores do AIC dos dois modelos para determinar qual deles possui um ajuste melhor aos dados.
+```
+
+### Colocar a equação no gráfico quadrático
+
+```{r}
+cot3 <- cot |> 
+  group_by(dias) |> 
+  summarize(meancot = mean(cot), sd=sd(cot))
+
+cot3 |> 
+  ggplot(aes(dias, meancot))+
+  geom_point()+
+  scale_x_continuous(breaks = seq(7,22,2), limits = c(7,21))+
+  geom_smooth(se = F, formula = y ~ poly(x, 2), method = "lm", color = "black")+
+  theme_bw()+
+  annotate(geom = "text",
+           x = 21, y = 20,
+           label = "y = 6,07 + 2,93x - 0.152718x²
+           R² = 0.96",
+           hjust = 1,5)+ 
+  geom_errorbar(aes(ymin = meancot - sd, 
+                    ymax = meancot + sd), 
+                width = 0.1)
+
+```
+
+# Variável produtividade
+
+## Análise exploratória dos dados
+
+### Importar dados
+
+```{r}
+prod <- read_excel("dados/produtividade.xlsx")
+```
+
+### Histograma para visualizar a distribuição dos dados
+
+```{r}
+prod |>
+  ggplot(aes(prod))+
+  geom_histogram(bins = 6,
+                 color = "black", 
+                 fill = "orange")
+```
+
+###Boxplot para visualizar a distribuição do número de cotilédones por tratamento
+
+```{r}
+prod|> 
+  ggplot(aes(trat, prod)) +
+  geom_boxplot()+
+  labs(x = "Tratamentos", y = "Produtividade (kg/ha)")
+```
+
+## Análises estatísticas
+
+### Ajustar o modelo usando aov() DBC
+
+```{r}
+
+aov1 <- aov(prod ~ trat + as.factor(rep), data = prod)
+summary(aov1)
+
+#Resultado: há efeito de tratamento.
+```
+
+### Testar premissas da ANOVA
+
+```{r}
+#Checar as premissas para verificar se o modelo está correto
+library(performance)
+check_heteroscedasticity(aov1)
+check_normality(aov1)
+#Resultado: dados homocedásticos mas apresentam normalidade.
+
+library(DHARMa)
+plot(simulateResiduals(aov1)) #normalidade a direita e variância homogênea a esquerda
+
+hist(aov1$residuals)
+```
+
+### Gráfico QQ (quantile-quantile)
+
+```{r}
+qqnorm(aov1$residuals)
+qqline(aov1$residuals)
+
+#O gráfico QQ (quantile-quantile) é uma ferramenta útil para avaliar a normalidade dos resíduos de um modelo. Se os resíduos seguirem uma distribuição normal, os pontos no gráfico devem se aproximar de uma linha reta. A linha de referência adicionada com qqline() é uma reta que representa a distribuição normal esperada.
+```
+
+### Análise de médias estimadas a partir do modelo ajustado
+
+```{r}
+library(emmeans)
+aov1_means <- emmeans(aov1, ~ trat)
+aov1_means
+```
+
+### Teste de Tukey
+
+```{r}
+pwpm(aov1_means)
+
+library(multcomp)
+library(multcompView)
+cld(aov1_means)
+```
+
+# Variável emergência
+
+## Análise exploratória
+
+### Importar dados
+
+```{r}
+emerg <- read_excel("dados/emergencia.xlsx")
+```
+
+### Histograma para visualizar a distribuição dos dados
+
+```{r}
+emerg |>
+  ggplot(aes(emerg))+
+  geom_histogram(bins = 6,
+                 color = "black", fill = "orange")
+```
+
+### Boxplot para visualizar a distribuição do número de plantas emergidas
+
+```{r}
+emerg|> 
+  ggplot(aes(trat, emerg)) +
+  geom_boxplot()+
+  scale_y_continuous(breaks = seq(0,90,10))+
+  labs(x = "Tratamentos", y = "Plantas emergidas")
+```
+
+### Número de plantas emergidas ao longo do tempo
+
+```{r}
+emerg2 <- emerg |> 
+  group_by(trat, dias) |> 
+  summarize(mean_emerg = mean(emerg))
+
+emerg2 |> 
+  ggplot(aes(dias, mean_emerg))+
+  geom_line(aes(group = trat, color = trat), size=0.5)+
+  geom_point(aes(fill = trat), shape = 21, alpha = 0.5, size= 3)+
+  scale_x_continuous(breaks = seq(7,23,2), limits = c(7,21))+
+  labs(x = "Dias", y = "Plantas emergidas", title = '', color = "Tratamentos", fill = "Tratamentos")
+
+
+emerg2|> 
+  ggplot(aes(dias, mean_emerg))+
+  geom_line(size=0.5, color = "black")+
+  geom_point( shape = 21, alpha = 0.5, size= 2)+
+  scale_x_continuous(breaks = seq(7,21,2), limits = c(7,21))+
+  labs(x = "Dias", y = "Plantas emergidas", title = '')+
+  facet_wrap(~trat)
+```
+
+### Índice de velocidade de emergência
+
+```{r}
+# Função para calcular o IVE para um tratamento específico
+calcular_IVE <- function(emerg, dias) {
+  n <- length(emerg)
+  IVE <- emerg[1] / dias[1]
+  for (i in 2:n) {
+    IVE <- IVE + ((emerg[i] - emerg[i-1]) / dias[i])
+  }
+  return(IVE)
+}
+
+# Cálculo do IVE para cada tratamento
+resultados <- aggregate(emerg$emerg, by = list(emerg$trat), FUN = calcular_IVE, dias = emerg$dias)
+
+# Criação do dataframe com os resultados do IVE por tratamento
+resultado_final <- data.frame(trat = resultados[, 1], IVE = resultados[, 2])
+print(resultado_final)
+```
+
+## Análise dos dados
+
+### Ajustar o modelo usando aov() DBC
+
+```{r}
+teste_emerg = lm(emerg ~ trat + dias + trat*dias + factor(rep), data = emerg)
+car::Anova(teste_emerg) # Resultado:significativo para tratamento e dias.
+
+```
+
+### Ajustar o modelo aov() DBC para tratamento e dias
+
+```{r}
+trat_emerg = lm(emerg ~ trat + factor(rep), data = emerg)
+car::Anova(trat_emerg) #Resultado: não teve efeito de tratamento.
+
+dias_emerg = lm(emerg ~ dias + factor(rep), data = emerg)
+car::Anova(dias_emerg) #Resultado: não teve efeito de dias.
+```
+
+Gráfico
+
+```{r}
+
+```
+

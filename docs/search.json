@@ -12,5 +12,54 @@
     "title": "Bem-vindo!",
     "section": "",
     "text": "Meu nome é Raphael Barboza Rosa, formado em Agronomia e mestrando em Fitopatologia pela Universidade Federal de Viçosa. Trabalho no Laboratório de Biologia de Populações de Fitopatógenos (BioPop), orientado pelo professor Eduardo S G Mizubuti."
+  },
+  {
+    "objectID": "script.html",
+    "href": "script.html",
+    "title": "Projeto final",
+    "section": "",
+    "text": "homocedaticidade é mais importante"
+  },
+  {
+    "objectID": "script.html#análise-exploratória-dos-dados",
+    "href": "script.html#análise-exploratória-dos-dados",
+    "title": "Projeto final",
+    "section": "Análise exploratória dos dados",
+    "text": "Análise exploratória dos dados\nImportar dados\n\n\n\nHistograma para visualizar a distribuição dos dados.\n\n\n\n\n\nBoxplot para visualizar a distribuição do número de cotilédones por tratamento\n\n\n\n\n\nNúmero de cotilédones ao longo do tempo"
+  },
+  {
+    "objectID": "script.html#análises-estatísticas",
+    "href": "script.html#análises-estatísticas",
+    "title": "Projeto final",
+    "section": "Análises estatísticas",
+    "text": "Análises estatísticas\n\n\nAnova Table (Type II tests)\n\nResponse: cot\n          Sum Sq  Df  F value Pr(>F)    \ntrat        33.6   5   0.4820 0.7892    \ndias      7927.7   1 568.3329 <2e-16 ***\nrep          1.7   1   0.1199 0.7297    \ntrat:dias    3.0   5   0.0436 0.9989    \nResiduals 1827.3 131                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nRegressão linear simples utilizando a função lm()\nTem-se uma variável quantitativa independente, dias, e uma dependente, cotilédones.\n\n\n\nCall:\nlm(formula = cot ~ dias, data = cot)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-10.649  -2.841  -1.575   1.596   7.255 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  32.5534     0.8074   40.32   <2e-16 ***\ndias         -1.4149     0.0576  -24.56   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 3.625 on 142 degrees of freedom\nMultiple R-squared:  0.8095,    Adjusted R-squared:  0.8082 \nF-statistic: 603.4 on 1 and 142 DF,  p-value: < 2.2e-16\n\n\nGráfico do modelo de regressão polinomial de segunda ordem a ser ajustado (quadrático)\n\n\n\n\n\nAjustar modelo\n\n\n\nCall:\nlm(formula = cot ~ dias + dias2, data = cot)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.1019 -0.2651 -0.1051  0.8981  2.8333 \n\nCoefficients:\n             Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  6.070650   1.158478    5.24 5.73e-07 ***\ndias         2.930634   0.182549   16.05  < 2e-16 ***\ndias2       -0.152718   0.006352  -24.04  < 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.611 on 141 degrees of freedom\nMultiple R-squared:  0.9626,    Adjusted R-squared:  0.9621 \nF-statistic:  1817 on 2 and 141 DF,  p-value: < 2.2e-16\n\n\n\n\n   df      AIC\nm1  3 783.5175\nm2  4 550.9208\n\n\nColocar a equação no gráfico quadrático"
+  },
+  {
+    "objectID": "script.html#análise-exploratória-dos-dados-1",
+    "href": "script.html#análise-exploratória-dos-dados-1",
+    "title": "Projeto final",
+    "section": "Análise exploratória dos dados",
+    "text": "Análise exploratória dos dados\n###Importar dados\n\n\n\n###Histograma para visualizar a distribuição dos dados.\n\n\n\n\n\n###Boxplot para visualizar a distribuição do número de cotilédones por tratamento\n\nprod|> \n  ggplot(aes(trat, prod)) +\n  geom_boxplot()+\n  labs(x = \"Tratamentos\", y = \"Produtividade (kg/ha)\")"
+  },
+  {
+    "objectID": "script.html#análises-estatísticas-1",
+    "href": "script.html#análises-estatísticas-1",
+    "title": "Projeto final",
+    "section": "Análises estatísticas",
+    "text": "Análises estatísticas\n###Ajustar o modelo usando aov() DBC\n\naov1 <- aov(prod ~ trat + as.factor(rep), data = prod)\nsummary(aov1)\n\n               Df  Sum Sq Mean Sq F value   Pr(>F)    \ntrat            5 1474239  294848    3.11   0.0256 *  \nas.factor(rep)  5 6466891 1293378   13.64 1.79e-06 ***\nResiduals      25 2369923   94797                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n#Resultado: há efeito de tratamento.\n\n###Testar as premissas\n\n#Checar as premissas para verificar se o modelo está correto\nlibrary(performance)\ncheck_heteroscedasticity(aov1)\n\nOK: Error variance appears to be homoscedastic (p = 0.563).\n\ncheck_normality(aov1)\n\nWarning: Non-normality of residuals detected (p = 0.018).\n\n#Resultado: dados homocedásticos mas apresentam normalidade.\n\nlibrary(DHARMa)\nplot(simulateResiduals(aov1)) #normalidade a direita e variância homogênea a esquerda\n\n\n\nhist(aov1$residuals)\n\n\n\n\n###Gráfico QQ (quantile-quantile)\n\nqqnorm(aov1$residuals)\nqqline(aov1$residuals)\n\n\n\n#O gráfico QQ (quantile-quantile) é uma ferramenta útil para avaliar a normalidade dos resíduos de um modelo. Se os resíduos seguirem uma distribuição normal, os pontos no gráfico devem se aproximar de uma linha reta. A linha de referência adicionada com qqline() é uma reta que representa a distribuição normal esperada.\n\n###Análise de médias estimadas a partir do modelo ajustado\n\nlibrary(emmeans)\naov1_means <- emmeans(aov1, ~ trat)\naov1_means\n\n trat          emmean  SE df lower.CL upper.CL\n certeza_n       2808 126 25     2549     3067\n ctrl_inoc       2236 126 25     1977     2495\n ctrl_not_inoc   2272 126 25     2013     2531\n derosal_plus    2232 126 25     1973     2491\n maxim_xl        2307 126 25     2049     2566\n quality         2433 126 25     2174     2692\n\nResults are averaged over the levels of: rep \nConfidence level used: 0.95 \n\n\n###Teste de Tukey\n\npwpm(aov1_means)\n\n              certeza_n ctrl_inoc ctrl_not_inoc derosal_plus maxim_xl quality\ncerteza_n        [2808]    0.0371        0.0575       0.0351   0.0875  0.3151\nctrl_inoc        571.85    [2236]        0.9999       1.0000   0.9985  0.8733\nctrl_not_inoc    536.30    -35.56        [2272]       0.9999   0.9999  0.9407\nderosal_plus     576.30      4.44         40.00       [2232]   0.9980  0.8628\nmaxim_xl         500.74    -71.11        -35.56       -75.56   [2307]  0.9792\nquality          374.81   -197.04       -161.48      -201.48  -125.93  [2433]\n\nRow and column labels: trat\nUpper triangle: P values   adjust = \"tukey\"\nDiagonal: [Estimates] (emmean) \nLower triangle: Comparisons (estimate)   earlier vs. later\n\nlibrary(multcomp)\nlibrary(multcompView)\ncld(aov1_means)\n\n trat          emmean  SE df lower.CL upper.CL .group\n derosal_plus    2232 126 25     1973     2491  1    \n ctrl_inoc       2236 126 25     1977     2495  1    \n ctrl_not_inoc   2272 126 25     2013     2531  12   \n maxim_xl        2307 126 25     2049     2566  12   \n quality         2433 126 25     2174     2692  12   \n certeza_n       2808 126 25     2549     3067   2   \n\nResults are averaged over the levels of: rep \nConfidence level used: 0.95 \nP value adjustment: tukey method for comparing a family of 6 estimates \nsignificance level used: alpha = 0.05 \nNOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
+  },
+  {
+    "objectID": "script.html#análise-exploratória-dos-dados-2",
+    "href": "script.html#análise-exploratória-dos-dados-2",
+    "title": "Projeto final",
+    "section": "Análise exploratória dos dados",
+    "text": "Análise exploratória dos dados\n###Importar dados\n\n\n\n###Histograma para visualizar a distribuição dos dados.\n\n\n\n\n\n###Boxplot para visualizar a distribuição do número de cotilédones por tratamento\n\nemerg|> \n  ggplot(aes(trat, emerg)) +\n  geom_boxplot()+\n  scale_y_continuous(breaks = seq(0,90,10))+\n  labs(x = \"Tratamentos\", y = \"Plantas emergidas\")\n\n\n\n\n###Número de plantas emergidas ao longo do tempo\n\n\n\n\n\n\n\n\n\nÍndice de velocidade de emergência\n\n# Função para calcular o IVE para um tratamento específico\ncalcular_IVE <- function(emerg, dias) {\n  n <- length(emerg)\n  IVE <- emerg[1] / dias[1]\n  for (i in 2:n) {\n    IVE <- IVE + ((emerg[i] - emerg[i-1]) / dias[i])\n  }\n  return(IVE)\n}\n\n# Cálculo do IVE para cada tratamento\nresultados <- aggregate(emerg$emerg, by = list(emerg$trat), FUN = calcular_IVE, dias = emerg$dias)\n\n# Criação do dataframe com os resultados do IVE por tratamento\nresultado_final <- data.frame(trat = resultados[, 1], IVE = resultados[, 2])\nprint(resultado_final)\n\n           trat       IVE\n1     certeza_n 11.080952\n2     ctrl_inoc 10.528571\n3 ctrl_not_inoc 11.519048\n4  derosal_plus  9.052381\n5      maxim_xl 11.352381\n6       quality  9.838095"
+  },
+  {
+    "objectID": "script.html#análise-dos-dados",
+    "href": "script.html#análise-dos-dados",
+    "title": "Projeto final",
+    "section": "Análise dos dados",
+    "text": "Análise dos dados\n###Ajustar o modelo usando aov() DBC\n\n\nAnova Table (Type II tests)\n\nResponse: emerg\n            Sum Sq  Df  F value  Pr(>F)    \ntrat          3905   5   2.4452 0.03543 *  \ndias        106209   1 332.5489 < 2e-16 ***\nfactor(rep)    650   5   0.4068 0.84377    \ntrat:dias      268   5   0.1675 0.97427    \nResiduals    63556 199                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n####Ajustar o modelo aov() DBC para tratamento e dias\n\ntrat_emerg = lm(emerg ~ trat + factor(rep), data = emerg)\ncar::Anova(trat_emerg) #Resultado: não teve efeito de tratamento.\n\nAnova Table (Type II tests)\n\nResponse: emerg\n            Sum Sq  Df F value Pr(>F)\ntrat          3905   5  0.9415 0.4551\nfactor(rep)    650   5  0.1566 0.9778\nResiduals   170033 205               \n\ndias_emerg = lm(emerg ~ dias + factor(rep), data = emerg)\ncar::Anova(dias_emerg) #Resultado: não teve efeito de dias.\n\nAnova Table (Type II tests)\n\nResponse: emerg\n            Sum Sq  Df  F value Pr(>F)    \ndias        106209   1 327.7447 <2e-16 ***\nfactor(rep)    650   5   0.4009 0.8479    \nResiduals    67729 209                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   }
 ]

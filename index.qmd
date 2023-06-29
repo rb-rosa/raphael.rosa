@@ -1,10 +1,9 @@
 ---
 title: "Bem-vindo!"
-
 ---
 
 ------------------------------------------------------------------------
 
-![](images/3-01.jpeg){style="float:left; border-radius:50%;padding-right:10px" width="195"}
+![](images/1686869598664.jpg){style="float:left;border-radius:50%;padding-right:1%;" width="149"}
 
 Meu nome é Raphael Barboza Rosa, formado em Agronomia e mestrando em Fitopatologia pela Universidade Federal de Viçosa. Trabalho no Laboratório de [Biologia de Populações de Fitopatógenos](http://www.dfp.ufv.br/departamento/laboratorios/biopop/) (BioPop), orientado pelo professor [Eduardo S G Mizubuti](http://www.dfp.ufv.br/departamento/docentes/mizubuti/).

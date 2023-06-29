@@ -23,9 +23,7 @@ website:
       - text: "Mestrado"
         menu:
           - text: "FIP606"
-            file: index.qmd
-            
-            
+            file: script.qmd
        
     right:
       - icon: linkedin

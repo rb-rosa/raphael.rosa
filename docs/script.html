@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>RB Rosa - Projeto final</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">RB Rosa</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mestrado" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mestrado</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mestrado">    
+        <li>
+    <a class="dropdown-item" href="./script.html">
+ <span class="dropdown-text">FIP606</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/raphaelfitopatologia"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/invites/contact/?i=xk2vhn0e4rad&amp;utm_content=2owlczy"><i class="bi bi-instagram" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/rb-rosa">
+ <span class="dropdown-text">Código fonte</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="mailto:rbarboza.rosa@gmail.com">
+ <span class="dropdown-text">Reportar erro</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Projeto final</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>homocedaticidade é mais importante</p>
+<section id="variável-cotilédones" class="level1">
+<h1>Variável cotilédones</h1>
+<section id="análise-exploratória-dos-dados" class="level2">
+<h2 class="anchored" data-anchor-id="análise-exploratória-dos-dados">Análise exploratória dos dados</h2>
+<p>Importar dados</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-1_2411446599063c9ddd5d7e460deaaffb">
+
+</div>
+<p>Histograma para visualizar a distribuição dos dados.</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-2_8988eb650a6ae21143c775c50dd8cca5">
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Boxplot para visualizar a distribuição do número de cotilédones por tratamento</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-3_0b5b965f79e029d8ccf980253613e1fa">
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Número de cotilédones ao longo do tempo</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-4_ece4f737750be7adc75d057c298b9fbb">
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="análises-estatísticas" class="level2">
+<h2 class="anchored" data-anchor-id="análises-estatísticas">Análises estatísticas</h2>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-5_ade370e42bf51f21df6e3e71d67ad686">
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type II tests)
+
+Response: cot
+          Sum Sq  Df  F value Pr(&gt;F)    
+trat        33.6   5   0.4820 0.7892    
+dias      7927.7   1 568.3329 &lt;2e-16 ***
+rep          1.7   1   0.1199 0.7297    
+trat:dias    3.0   5   0.0436 0.9989    
+Residuals 1827.3 131                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Regressão linear simples utilizando a função lm()</p>
+<p>Tem-se uma variável quantitativa independente, dias, e uma dependente, cotilédones.</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-6_d35424b7396fa1fe9747fc6753ad7de3">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = cot ~ dias, data = cot)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-10.649  -2.841  -1.575   1.596   7.255 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  32.5534     0.8074   40.32   &lt;2e-16 ***
+dias         -1.4149     0.0576  -24.56   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.625 on 142 degrees of freedom
+Multiple R-squared:  0.8095,    Adjusted R-squared:  0.8082 
+F-statistic: 603.4 on 1 and 142 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Gráfico do modelo de regressão polinomial de segunda ordem a ser ajustado (quadrático)</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-7_a5252721be8ede03187deb61221fe0c4">
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ajustar modelo</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-8_b358a35096a180a5e0ce86cda1a4e5ab">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = cot ~ dias + dias2, data = cot)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.1019 -0.2651 -0.1051  0.8981  2.8333 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  6.070650   1.158478    5.24 5.73e-07 ***
+dias         2.930634   0.182549   16.05  &lt; 2e-16 ***
+dias2       -0.152718   0.006352  -24.04  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.611 on 141 degrees of freedom
+Multiple R-squared:  0.9626,    Adjusted R-squared:  0.9621 
+F-statistic:  1817 on 2 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-9_cd415e3870a835d136a2cb1266bd61bc">
+<div class="cell-output cell-output-stdout">
+<pre><code>   df      AIC
+m1  3 783.5175
+m2  4 550.9208</code></pre>
+</div>
+</div>
+<p>Colocar a equação no gráfico quadrático</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-10_a5ed1c47dfe702983cbdaf781cd120b8">
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="variável-produtividade" class="level1">
+<h1>Variável produtividade</h1>
+<section id="análise-exploratória-dos-dados-1" class="level2">
+<h2 class="anchored" data-anchor-id="análise-exploratória-dos-dados-1">Análise exploratória dos dados</h2>
+<p>###Importar dados</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-11_58b742b38d9965cadfbe348ee8f6933a">
+
+</div>
+<p>###Histograma para visualizar a distribuição dos dados.</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-12_629909f39f068bd5c3c2012232d377cf">
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>###Boxplot para visualizar a distribuição do número de cotilédones por tratamento</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-13_2706675a4fff0155933c6097cc6f28a1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prod<span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, prod)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamentos"</span>, <span class="at">y =</span> <span class="st">"Produtividade (kg/ha)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="análises-estatísticas-1" class="level2">
+<h2 class="anchored" data-anchor-id="análises-estatísticas-1">Análises estatísticas</h2>
+<p>###Ajustar o modelo usando aov() DBC</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-14_96d2eeb865933ee257bb8d013d37f08f">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(prod <span class="sc">~</span> trat <span class="sc">+</span> <span class="fu">as.factor</span>(rep), <span class="at">data =</span> prod)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Df  Sum Sq Mean Sq F value   Pr(&gt;F)    
+trat            5 1474239  294848    3.11   0.0256 *  
+as.factor(rep)  5 6466891 1293378   13.64 1.79e-06 ***
+Residuals      25 2369923   94797                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Resultado: há efeito de tratamento.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>###Testar as premissas</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-15_beed7b78e6822fcecf7261ed6df7ce58">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checar as premissas para verificar se o modelo está correto</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>OK: Error variance appears to be homoscedastic (p = 0.563).</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Warning: Non-normality of residuals detected (p = 0.018).</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Resultado: dados homocedásticos mas apresentam normalidade.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(aov1)) <span class="co">#normalidade a direita e variância homogênea a esquerda</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(aov1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>###Gráfico QQ (quantile-quantile)</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-16_cff6224b6d579473bf3a77a3e08874b9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(aov1<span class="sc">$</span>residuals)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(aov1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#O gráfico QQ (quantile-quantile) é uma ferramenta útil para avaliar a normalidade dos resíduos de um modelo. Se os resíduos seguirem uma distribuição normal, os pontos no gráfico devem se aproximar de uma linha reta. A linha de referência adicionada com qqline() é uma reta que representa a distribuição normal esperada.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>###Análise de médias estimadas a partir do modelo ajustado</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-17_4808b93841b62d727f02660326cd5161">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>aov1_means <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(aov1, <span class="sc">~</span> trat)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>aov1_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> trat          emmean  SE df lower.CL upper.CL
+ certeza_n       2808 126 25     2549     3067
+ ctrl_inoc       2236 126 25     1977     2495
+ ctrl_not_inoc   2272 126 25     2013     2531
+ derosal_plus    2232 126 25     1973     2491
+ maxim_xl        2307 126 25     2049     2566
+ quality         2433 126 25     2174     2692
+
+Results are averaged over the levels of: rep 
+Confidence level used: 0.95 </code></pre>
+</div>
+</div>
+<p>###Teste de Tukey</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-18_c70da3519210a4ba0b6ebba094c11814">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pwpm</span>(aov1_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              certeza_n ctrl_inoc ctrl_not_inoc derosal_plus maxim_xl quality
+certeza_n        [2808]    0.0371        0.0575       0.0351   0.0875  0.3151
+ctrl_inoc        571.85    [2236]        0.9999       1.0000   0.9985  0.8733
+ctrl_not_inoc    536.30    -35.56        [2272]       0.9999   0.9999  0.9407
+derosal_plus     576.30      4.44         40.00       [2232]   0.9980  0.8628
+maxim_xl         500.74    -71.11        -35.56       -75.56   [2307]  0.9792
+quality          374.81   -197.04       -161.48      -201.48  -125.93  [2433]
+
+Row and column labels: trat
+Upper triangle: P values   adjust = "tukey"
+Diagonal: [Estimates] (emmean) 
+Lower triangle: Comparisons (estimate)   earlier vs. later</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcompView)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(aov1_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> trat          emmean  SE df lower.CL upper.CL .group
+ derosal_plus    2232 126 25     1973     2491  1    
+ ctrl_inoc       2236 126 25     1977     2495  1    
+ ctrl_not_inoc   2272 126 25     2013     2531  12   
+ maxim_xl        2307 126 25     2049     2566  12   
+ quality         2433 126 25     2174     2692  12   
+ certeza_n       2808 126 25     2549     3067   2   
+
+Results are averaged over the levels of: rep 
+Confidence level used: 0.95 
+P value adjustment: tukey method for comparing a family of 6 estimates 
+significance level used: alpha = 0.05 
+NOTE: If two or more means share the same grouping symbol,
+      then we cannot show them to be different.
+      But we also did not show them to be the same. </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="variável-emergência" class="level1">
+<h1>Variável emergência</h1>
+<section id="análise-exploratória-dos-dados-2" class="level2">
+<h2 class="anchored" data-anchor-id="análise-exploratória-dos-dados-2">Análise exploratória dos dados</h2>
+<p>###Importar dados</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-19_ee592abad0dbb70ad32f79ceccf3a21d">
+
+</div>
+<p>###Histograma para visualizar a distribuição dos dados.</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-20_2d631ab64ced13e9ef8810bebf7a3620">
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>###Boxplot para visualizar a distribuição do número de cotilédones por tratamento</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-21_4c278f8e0411d13be8302b380374ca66">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>emerg<span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, emerg)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">90</span>,<span class="dv">10</span>))<span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamentos"</span>, <span class="at">y =</span> <span class="st">"Plantas emergidas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>###Número de plantas emergidas ao longo do tempo</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-22_e2c53728383f6a9ade19e2e7f09fe397">
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="índice-de-velocidade-de-emergência" class="level3">
+<h3 class="anchored" data-anchor-id="índice-de-velocidade-de-emergência">Índice de velocidade de emergência</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-23_d45da4e0948e74b52d725525a9a371c4">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para calcular o IVE para um tratamento específico</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>calcular_IVE <span class="ot">&lt;-</span> <span class="cf">function</span>(emerg, dias) {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(emerg)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  IVE <span class="ot">&lt;-</span> emerg[<span class="dv">1</span>] <span class="sc">/</span> dias[<span class="dv">1</span>]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n) {</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    IVE <span class="ot">&lt;-</span> IVE <span class="sc">+</span> ((emerg[i] <span class="sc">-</span> emerg[i<span class="dv">-1</span>]) <span class="sc">/</span> dias[i])</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(IVE)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do IVE para cada tratamento</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(emerg<span class="sc">$</span>emerg, <span class="at">by =</span> <span class="fu">list</span>(emerg<span class="sc">$</span>trat), <span class="at">FUN =</span> calcular_IVE, <span class="at">dias =</span> emerg<span class="sc">$</span>dias)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Criação do dataframe com os resultados do IVE por tratamento</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>resultado_final <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">trat =</span> resultados[, <span class="dv">1</span>], <span class="at">IVE =</span> resultados[, <span class="dv">2</span>])</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           trat       IVE
+1     certeza_n 11.080952
+2     ctrl_inoc 10.528571
+3 ctrl_not_inoc 11.519048
+4  derosal_plus  9.052381
+5      maxim_xl 11.352381
+6       quality  9.838095</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="análise-dos-dados" class="level2">
+<h2 class="anchored" data-anchor-id="análise-dos-dados">Análise dos dados</h2>
+<p>###Ajustar o modelo usando aov() DBC</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-24_c59ab74b50e6896a8f52bda17fb112a0">
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type II tests)
+
+Response: emerg
+            Sum Sq  Df  F value  Pr(&gt;F)    
+trat          3905   5   2.4452 0.03543 *  
+dias        106209   1 332.5489 &lt; 2e-16 ***
+factor(rep)    650   5   0.4068 0.84377    
+trat:dias      268   5   0.1675 0.97427    
+Residuals    63556 199                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>####Ajustar o modelo aov() DBC para tratamento e dias</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-25_ef53880771ab9c27d8d1c4fb68e6a86c">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>trat_emerg <span class="ot">=</span> <span class="fu">lm</span>(emerg <span class="sc">~</span> trat <span class="sc">+</span> <span class="fu">factor</span>(rep), <span class="at">data =</span> emerg)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(trat_emerg) <span class="co">#Resultado: não teve efeito de tratamento.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type II tests)
+
+Response: emerg
+            Sum Sq  Df F value Pr(&gt;F)
+trat          3905   5  0.9415 0.4551
+factor(rep)    650   5  0.1566 0.9778
+Residuals   170033 205               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dias_emerg <span class="ot">=</span> <span class="fu">lm</span>(emerg <span class="sc">~</span> dias <span class="sc">+</span> <span class="fu">factor</span>(rep), <span class="at">data =</span> emerg)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(dias_emerg) <span class="co">#Resultado: não teve efeito de dias.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type II tests)
+
+Response: emerg
+            Sum Sq  Df  F value Pr(&gt;F)    
+dias        106209   1 327.7447 &lt;2e-16 ***
+factor(rep)    650   5   0.4009 0.8479    
+Residuals    67729 209                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
