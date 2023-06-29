@@ -10,7 +10,7 @@ execute:
 website:
   reader-mode: true
   page-navigation: true
-  title: "Raphael B Rosa"
+  title: "**Raphael B Rosa**"
   navbar:
     style: "docked"
     pinned: true
