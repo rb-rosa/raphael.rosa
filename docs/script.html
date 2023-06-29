@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RB Rosa - Projeto final</title>
+<title>Raphael B Rosa - Projeto final</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">RB Rosa</span>
+    <span class="navbar-title">Raphael B Rosa</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mestrado">    
         <li>
     <a class="dropdown-item" href="./script.html">
- <span class="dropdown-text">FIP606</span></a>
+ <span class="dropdown-text">FIP606 - Projeto Final</span></a>
   </li>  
     </ul>
   </li>
@@ -222,40 +222,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>homocedaticidade é mais importante</p>
 <section id="variável-cotilédones" class="level1">
 <h1>Variável cotilédones</h1>
 <section id="análise-exploratória-dos-dados" class="level2">
 <h2 class="anchored" data-anchor-id="análise-exploratória-dos-dados">Análise exploratória dos dados</h2>
-<p>Importar dados</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-1_2411446599063c9ddd5d7e460deaaffb">
-
+<section id="importar-dados" class="level3">
+<h3 class="anchored" data-anchor-id="importar-dados">Importar dados</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-1_39014c028d6f3e09de1e1c817643611e">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cot <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados/cotiledones.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Histograma para visualizar a distribuição dos dados.</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-2_8988eb650a6ae21143c775c50dd8cca5">
+</section>
+<section id="histograma-para-visualizar-a-distribuição-dos-dados" class="level3">
+<h3 class="anchored" data-anchor-id="histograma-para-visualizar-a-distribuição-dos-dados">Histograma para visualizar a distribuição dos dados</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-2_a4d5004cab44ee5ee6fa8af451190a77">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cot <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cot))<span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">6</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Boxplot para visualizar a distribuição do número de cotilédones por tratamento</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-3_0b5b965f79e029d8ccf980253613e1fa">
+</section>
+<section id="boxplot-para-visualizar-a-distribuição-do-número-de-cotilédones-por-tratamento" class="level3">
+<h3 class="anchored" data-anchor-id="boxplot-para-visualizar-a-distribuição-do-número-de-cotilédones-por-tratamento">Boxplot para visualizar a distribuição do número de cotilédones por tratamento</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-3_2d24b51e4c06543f43fe261bdb77c52e">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cot <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, cot)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"gray"</span>)<span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="dv">5</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>))<span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamentos"</span>, <span class="at">y =</span> <span class="st">"Número de cotilédones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Número de cotilédones ao longo do tempo</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-4_ece4f737750be7adc75d057c298b9fbb">
+</section>
+<section id="número-de-cotilédones-ao-longo-do-tempo" class="level3">
+<h3 class="anchored" data-anchor-id="número-de-cotilédones-ao-longo-do-tempo">Número de cotilédones ao longo do tempo</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-4_fd55ac8092de896a74eb9321cffbf27d">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cot2 <span class="ot">&lt;-</span> cot <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(trat, dias) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meancot =</span> <span class="fu">mean</span>(cot))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>cot2 <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(dias, meancot))<span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> trat, <span class="at">color =</span> trat), <span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> trat), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size=</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">7</span>,<span class="dv">23</span>,<span class="dv">2</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">21</span>))<span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Dias"</span>, <span class="at">y =</span> <span class="st">"Cotilédones"</span>, <span class="at">title =</span> <span class="st">''</span>, <span class="at">color =</span> <span class="st">"Tratamentos"</span>, <span class="at">fill =</span> <span class="st">"Tratamentos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cot2 <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(dias, meancot))<span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size=</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">7</span>,<span class="dv">22</span>,<span class="dv">2</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">21</span>))<span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Dias"</span>, <span class="at">y =</span> <span class="st">"Cotilédones"</span>, <span class="at">title =</span> <span class="st">''</span>)<span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>trat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
+</section>
 <section id="análises-estatísticas" class="level2">
 <h2 class="anchored" data-anchor-id="análises-estatísticas">Análises estatísticas</h2>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-5_ade370e42bf51f21df6e3e71d67ad686">
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-5_c4ac8d1e97d03ebf1cd554e1d4469563">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>teste <span class="ot">=</span> <span class="fu">lm</span>(cot <span class="sc">~</span> trat <span class="sc">+</span> dias <span class="sc">+</span> trat<span class="sc">*</span>dias <span class="sc">+</span> rep, <span class="at">data =</span> cot)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(teste)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type II tests)
 
@@ -269,10 +307,14 @@ Residuals 1827.3 131
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: os tratamentos não diferem, são iguais. Apenas o dia tem efeito. Elaborar um modelo novo. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Regressão linear simples utilizando a função lm()</p>
+<section id="regressão-linear-simples-utilizando-a-função-lm" class="level3">
+<h3 class="anchored" data-anchor-id="regressão-linear-simples-utilizando-a-função-lm">Regressão linear simples utilizando a função lm()</h3>
 <p>Tem-se uma variável quantitativa independente, dias, e uma dependente, cotilédones.</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-6_d35424b7396fa1fe9747fc6753ad7de3">
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-6_d6b7c56d05fba92e51efe479da78508b">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span><span class="fu">lm</span>(cot<span class="sc">~</span>dias, <span class="at">data=</span>cot)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -293,14 +335,33 @@ Residual standard error: 3.625 on 142 degrees of freedom
 Multiple R-squared:  0.8095,    Adjusted R-squared:  0.8082 
 F-statistic: 603.4 on 1 and 142 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado: deu efeito de dias</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#O código m1 = lm(cot ~ dias, data = cot) realiza uma análise de regressão linear simples utilizando a função lm() no RStudio. Vamos detalhar o código linha por linha:m1 = lm(cot ~ dias, data = cot): Nesta linha, estamos criando um objeto chamado m1 que irá armazenar o modelo de regressão linear. A fórmula cot ~ dias especifica que estamos modelando a variável cot como uma função da variável dias. A opção data = cot indica que os dados a serem utilizados estão no conjunto de dados cot.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Gráfico do modelo de regressão polinomial de segunda ordem a ser ajustado (quadrático)</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-7_a5252721be8ede03187deb61221fe0c4">
+</section>
+<section id="gráfico-do-modelo-de-regressão-polinomial-de-segunda-ordem-a-ser-ajustado-quadrático" class="level3">
+<h3 class="anchored" data-anchor-id="gráfico-do-modelo-de-regressão-polinomial-de-segunda-ordem-a-ser-ajustado-quadrático">Gráfico do modelo de regressão polinomial de segunda ordem a ser ajustado (quadrático)</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-7_cfe12ea138ef5d3dd1bef9f00ed0f872">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Em resumo, o código abaixo realiza a criação de um gráfico com pontos representando as médias de uma variável meancot para cada valor de dias. Além disso, ele ajusta uma linha suavizada correspondente a um modelo de regressão polinomial de segunda ordem. Modelo curvilinear.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>cot3 <span class="ot">&lt;-</span> cot <span class="sc">|&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dias) <span class="sc">|&gt;</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meancot =</span> <span class="fu">mean</span>(cot))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>cot3 <span class="sc">|&gt;</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(dias, meancot))<span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">7</span>,<span class="dv">22</span>,<span class="dv">2</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">21</span>))<span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Ajustar modelo</p>
+</section>
+<section id="ajustar-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="ajustar-modelo">Ajustar modelo</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-8_b358a35096a180a5e0ce86cda1a4e5ab">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -324,52 +385,88 @@ Multiple R-squared:  0.9626,    Adjusted R-squared:  0.9621
 F-statistic:  1817 on 2 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-9_cd415e3870a835d136a2cb1266bd61bc">
+</section>
+<section id="aic" class="level3">
+<h3 class="anchored" data-anchor-id="aic">AIC</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-9_b2b8e3f6fe7662f930b1195cc0cf227a">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1, m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   df      AIC
 m1  3 783.5175
 m2  4 550.9208</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A função AIC() é usada para calcular o Critério de Informação de Akaike (AIC, Akaike Information Criterion) para um ou mais modelos. O AIC é uma medida que avalia a qualidade do ajuste de um modelo, levando em consideração a capacidade de ajuste e a complexidade do modelo. A função AIC() retorna o valor do AIC para cada modelo especificado. Quanto menor o valor do AIC, melhor é o ajuste do modelo. Portanto, você pode comparar os valores do AIC dos dois modelos para determinar qual deles possui um ajuste melhor aos dados.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Colocar a equação no gráfico quadrático</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-10_a5ed1c47dfe702983cbdaf781cd120b8">
+</section>
+<section id="colocar-a-equação-no-gráfico-quadrático" class="level3">
+<h3 class="anchored" data-anchor-id="colocar-a-equação-no-gráfico-quadrático">Colocar a equação no gráfico quadrático</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-10_d052cfd577b2b16c44ea9ff463f3bc89">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>cot3 <span class="ot">&lt;-</span> cot <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dias) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meancot =</span> <span class="fu">mean</span>(cot), <span class="at">sd=</span><span class="fu">sd</span>(cot))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>cot3 <span class="sc">|&gt;</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(dias, meancot))<span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">7</span>,<span class="dv">22</span>,<span class="dv">2</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">21</span>))<span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">21</span>, <span class="at">y =</span> <span class="dv">20</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"y = 6,07 + 2,93x - 0.152718x²</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="st">           R² = 0.96"</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">hjust =</span> <span class="dv">1</span>,<span class="dv">5</span>)<span class="sc">+</span> </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> meancot <span class="sc">-</span> sd, </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> meancot <span class="sc">+</span> sd), </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 </section>
+</section>
 <section id="variável-produtividade" class="level1">
 <h1>Variável produtividade</h1>
 <section id="análise-exploratória-dos-dados-1" class="level2">
 <h2 class="anchored" data-anchor-id="análise-exploratória-dos-dados-1">Análise exploratória dos dados</h2>
-<p>###Importar dados</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-11_58b742b38d9965cadfbe348ee8f6933a">
-
+<section id="importar-dados-1" class="level3">
+<h3 class="anchored" data-anchor-id="importar-dados-1">Importar dados</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-11_50d436a48747a1272828006bf5277bb0">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados/produtividade.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>###Histograma para visualizar a distribuição dos dados.</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-12_629909f39f068bd5c3c2012232d377cf">
+</section>
+<section id="histograma-para-visualizar-a-distribuição-dos-dados-1" class="level3">
+<h3 class="anchored" data-anchor-id="histograma-para-visualizar-a-distribuição-dos-dados-1">Histograma para visualizar a distribuição dos dados</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-12_4048e317ed781b241e65437485164c51">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(prod))<span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">6</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>###Boxplot para visualizar a distribuição do número de cotilédones por tratamento</p>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-13_2706675a4fff0155933c6097cc6f28a1">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prod<span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, prod)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamentos"</span>, <span class="at">y =</span> <span class="st">"Produtividade (kg/ha)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>prod<span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, prod)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamentos"</span>, <span class="at">y =</span> <span class="st">"Produtividade (kg/ha)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
+</section>
 <section id="análises-estatísticas-1" class="level2">
 <h2 class="anchored" data-anchor-id="análises-estatísticas-1">Análises estatísticas</h2>
-<p>###Ajustar o modelo usando aov() DBC</p>
+<section id="ajustar-o-modelo-usando-aov-dbc" class="level3">
+<h3 class="anchored" data-anchor-id="ajustar-o-modelo-usando-aov-dbc">Ajustar o modelo usando aov() DBC</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-14_96d2eeb865933ee257bb8d013d37f08f">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(prod <span class="sc">~</span> trat <span class="sc">+</span> <span class="fu">as.factor</span>(rep), <span class="at">data =</span> prod)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(prod <span class="sc">~</span> trat <span class="sc">+</span> <span class="fu">as.factor</span>(rep), <span class="at">data =</span> prod)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Df  Sum Sq Mean Sq F value   Pr(&gt;F)    
 trat            5 1474239  294848    3.11   0.0256 *  
@@ -378,46 +475,52 @@ Residuals      25 2369923   94797
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Resultado: há efeito de tratamento.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Resultado: há efeito de tratamento.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>###Testar as premissas</p>
+</section>
+<section id="testar-premissas-da-anova" class="level3">
+<h3 class="anchored" data-anchor-id="testar-premissas-da-anova">Testar premissas da ANOVA</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-15_beed7b78e6822fcecf7261ed6df7ce58">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checar as premissas para verificar se o modelo está correto</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checar as premissas para verificar se o modelo está correto</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>OK: Error variance appears to be homoscedastic (p = 0.563).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(aov1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Warning: Non-normality of residuals detected (p = 0.018).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Resultado: dados homocedásticos mas apresentam normalidade.</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(aov1)) <span class="co">#normalidade a direita e variância homogênea a esquerda</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Resultado: dados homocedásticos mas apresentam normalidade.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">simulateResiduals</span>(aov1)) <span class="co">#normalidade a direita e variância homogênea a esquerda</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(aov1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(aov1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>###Gráfico QQ (quantile-quantile)</p>
+</section>
+<section id="gráfico-qq-quantile-quantile" class="level3">
+<h3 class="anchored" data-anchor-id="gráfico-qq-quantile-quantile">Gráfico QQ (quantile-quantile)</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-16_cff6224b6d579473bf3a77a3e08874b9">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(aov1<span class="sc">$</span>residuals)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(aov1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(aov1<span class="sc">$</span>residuals)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(aov1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#O gráfico QQ (quantile-quantile) é uma ferramenta útil para avaliar a normalidade dos resíduos de um modelo. Se os resíduos seguirem uma distribuição normal, os pontos no gráfico devem se aproximar de uma linha reta. A linha de referência adicionada com qqline() é uma reta que representa a distribuição normal esperada.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#O gráfico QQ (quantile-quantile) é uma ferramenta útil para avaliar a normalidade dos resíduos de um modelo. Se os resíduos seguirem uma distribuição normal, os pontos no gráfico devem se aproximar de uma linha reta. A linha de referência adicionada com qqline() é uma reta que representa a distribuição normal esperada.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>###Análise de médias estimadas a partir do modelo ajustado</p>
+</section>
+<section id="análise-de-médias-estimadas-a-partir-do-modelo-ajustado" class="level3">
+<h3 class="anchored" data-anchor-id="análise-de-médias-estimadas-a-partir-do-modelo-ajustado">Análise de médias estimadas a partir do modelo ajustado</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-17_4808b93841b62d727f02660326cd5161">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>aov1_means <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(aov1, <span class="sc">~</span> trat)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>aov1_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>aov1_means <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(aov1, <span class="sc">~</span> trat)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>aov1_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> trat          emmean  SE df lower.CL upper.CL
  certeza_n       2808 126 25     2549     3067
@@ -431,9 +534,11 @@ Results are averaged over the levels of: rep
 Confidence level used: 0.95 </code></pre>
 </div>
 </div>
-<p>###Teste de Tukey</p>
+</section>
+<section id="teste-de-tukey" class="level3">
+<h3 class="anchored" data-anchor-id="teste-de-tukey">Teste de Tukey</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-18_c70da3519210a4ba0b6ebba094c11814">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pwpm</span>(aov1_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pwpm</span>(aov1_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              certeza_n ctrl_inoc ctrl_not_inoc derosal_plus maxim_xl quality
 certeza_n        [2808]    0.0371        0.0575       0.0351   0.0875  0.3151
@@ -448,9 +553,9 @@ Upper triangle: P values   adjust = "tukey"
 Diagonal: [Estimates] (emmean) 
 Lower triangle: Comparisons (estimate)   earlier vs. later</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcompView)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(aov1_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcompView)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(aov1_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> trat          emmean  SE df lower.CL upper.CL .group
  derosal_plus    2232 126 25     1973     2491  1    
@@ -471,59 +576,89 @@ NOTE: If two or more means share the same grouping symbol,
 </div>
 </section>
 </section>
+</section>
 <section id="variável-emergência" class="level1">
 <h1>Variável emergência</h1>
-<section id="análise-exploratória-dos-dados-2" class="level2">
-<h2 class="anchored" data-anchor-id="análise-exploratória-dos-dados-2">Análise exploratória dos dados</h2>
-<p>###Importar dados</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-19_ee592abad0dbb70ad32f79ceccf3a21d">
-
+<section id="análise-exploratória" class="level2">
+<h2 class="anchored" data-anchor-id="análise-exploratória">Análise exploratória</h2>
+<section id="importar-dados-2" class="level3">
+<h3 class="anchored" data-anchor-id="importar-dados-2">Importar dados</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-19_b024b02f567071998b7c81d210bfea3f">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>emerg <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados/emergencia.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>###Histograma para visualizar a distribuição dos dados.</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-20_2d631ab64ced13e9ef8810bebf7a3620">
+</section>
+<section id="histograma-para-visualizar-a-distribuição-dos-dados-2" class="level3">
+<h3 class="anchored" data-anchor-id="histograma-para-visualizar-a-distribuição-dos-dados-2">Histograma para visualizar a distribuição dos dados</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-20_9648aa960b326fa858f8c06397fc7eba">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>emerg <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(emerg))<span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">6</span>,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>###Boxplot para visualizar a distribuição do número de cotilédones por tratamento</p>
+</section>
+<section id="boxplot-para-visualizar-a-distribuição-do-número-de-plantas-emergidas" class="level3">
+<h3 class="anchored" data-anchor-id="boxplot-para-visualizar-a-distribuição-do-número-de-plantas-emergidas">Boxplot para visualizar a distribuição do número de plantas emergidas</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-21_4c278f8e0411d13be8302b380374ca66">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>emerg<span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, emerg)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">90</span>,<span class="dv">10</span>))<span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamentos"</span>, <span class="at">y =</span> <span class="st">"Plantas emergidas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>emerg<span class="sc">|&gt;</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, emerg)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">90</span>,<span class="dv">10</span>))<span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamentos"</span>, <span class="at">y =</span> <span class="st">"Plantas emergidas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>###Número de plantas emergidas ao longo do tempo</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-22_e2c53728383f6a9ade19e2e7f09fe397">
+</section>
+<section id="número-de-plantas-emergidas-ao-longo-do-tempo" class="level3">
+<h3 class="anchored" data-anchor-id="número-de-plantas-emergidas-ao-longo-do-tempo">Número de plantas emergidas ao longo do tempo</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-22_d21e51b90971d2d4a88dd8668a1ec368">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>emerg2 <span class="ot">&lt;-</span> emerg <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(trat, dias) <span class="sc">|&gt;</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_emerg =</span> <span class="fu">mean</span>(emerg))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>emerg2 <span class="sc">|&gt;</span> </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(dias, mean_emerg))<span class="sc">+</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> trat, <span class="at">color =</span> trat), <span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> trat), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size=</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">7</span>,<span class="dv">23</span>,<span class="dv">2</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">21</span>))<span class="sc">+</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Dias"</span>, <span class="at">y =</span> <span class="st">"Plantas emergidas"</span>, <span class="at">title =</span> <span class="st">''</span>, <span class="at">color =</span> <span class="st">"Tratamentos"</span>, <span class="at">fill =</span> <span class="st">"Tratamentos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>emerg2<span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(dias, mean_emerg))<span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size=</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">7</span>,<span class="dv">21</span>,<span class="dv">2</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">21</span>))<span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Dias"</span>, <span class="at">y =</span> <span class="st">"Plantas emergidas"</span>, <span class="at">title =</span> <span class="st">''</span>)<span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>trat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="script_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
 <section id="índice-de-velocidade-de-emergência" class="level3">
 <h3 class="anchored" data-anchor-id="índice-de-velocidade-de-emergência">Índice de velocidade de emergência</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-23_d45da4e0948e74b52d725525a9a371c4">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para calcular o IVE para um tratamento específico</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>calcular_IVE <span class="ot">&lt;-</span> <span class="cf">function</span>(emerg, dias) {</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(emerg)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  IVE <span class="ot">&lt;-</span> emerg[<span class="dv">1</span>] <span class="sc">/</span> dias[<span class="dv">1</span>]</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n) {</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    IVE <span class="ot">&lt;-</span> IVE <span class="sc">+</span> ((emerg[i] <span class="sc">-</span> emerg[i<span class="dv">-1</span>]) <span class="sc">/</span> dias[i])</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(IVE)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do IVE para cada tratamento</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(emerg<span class="sc">$</span>emerg, <span class="at">by =</span> <span class="fu">list</span>(emerg<span class="sc">$</span>trat), <span class="at">FUN =</span> calcular_IVE, <span class="at">dias =</span> emerg<span class="sc">$</span>dias)</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Criação do dataframe com os resultados do IVE por tratamento</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>resultado_final <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">trat =</span> resultados[, <span class="dv">1</span>], <span class="at">IVE =</span> resultados[, <span class="dv">2</span>])</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para calcular o IVE para um tratamento específico</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>calcular_IVE <span class="ot">&lt;-</span> <span class="cf">function</span>(emerg, dias) {</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(emerg)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  IVE <span class="ot">&lt;-</span> emerg[<span class="dv">1</span>] <span class="sc">/</span> dias[<span class="dv">1</span>]</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n) {</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    IVE <span class="ot">&lt;-</span> IVE <span class="sc">+</span> ((emerg[i] <span class="sc">-</span> emerg[i<span class="dv">-1</span>]) <span class="sc">/</span> dias[i])</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(IVE)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do IVE para cada tratamento</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(emerg<span class="sc">$</span>emerg, <span class="at">by =</span> <span class="fu">list</span>(emerg<span class="sc">$</span>trat), <span class="at">FUN =</span> calcular_IVE, <span class="at">dias =</span> emerg<span class="sc">$</span>dias)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Criação do dataframe com os resultados do IVE por tratamento</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>resultado_final <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">trat =</span> resultados[, <span class="dv">1</span>], <span class="at">IVE =</span> resultados[, <span class="dv">2</span>])</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           trat       IVE
 1     certeza_n 11.080952
@@ -538,8 +673,11 @@ NOTE: If two or more means share the same grouping symbol,
 </section>
 <section id="análise-dos-dados" class="level2">
 <h2 class="anchored" data-anchor-id="análise-dos-dados">Análise dos dados</h2>
-<p>###Ajustar o modelo usando aov() DBC</p>
-<div class="cell" data-hash="script_cache/html/unnamed-chunk-24_c59ab74b50e6896a8f52bda17fb112a0">
+<section id="ajustar-o-modelo-usando-aov-dbc-1" class="level3">
+<h3 class="anchored" data-anchor-id="ajustar-o-modelo-usando-aov-dbc-1">Ajustar o modelo usando aov() DBC</h3>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-24_d59884470b187bf2d423eb55a532a3fd">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>teste_emerg <span class="ot">=</span> <span class="fu">lm</span>(emerg <span class="sc">~</span> trat <span class="sc">+</span> dias <span class="sc">+</span> trat<span class="sc">*</span>dias <span class="sc">+</span> <span class="fu">factor</span>(rep), <span class="at">data =</span> emerg)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(teste_emerg) <span class="co"># Resultado:significativo para tratamento e dias.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type II tests)
 
@@ -554,10 +692,12 @@ Residuals    63556 199
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>####Ajustar o modelo aov() DBC para tratamento e dias</p>
+</section>
+<section id="ajustar-o-modelo-aov-dbc-para-tratamento-e-dias" class="level3">
+<h3 class="anchored" data-anchor-id="ajustar-o-modelo-aov-dbc-para-tratamento-e-dias">Ajustar o modelo aov() DBC para tratamento e dias</h3>
 <div class="cell" data-hash="script_cache/html/unnamed-chunk-25_ef53880771ab9c27d8d1c4fb68e6a86c">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>trat_emerg <span class="ot">=</span> <span class="fu">lm</span>(emerg <span class="sc">~</span> trat <span class="sc">+</span> <span class="fu">factor</span>(rep), <span class="at">data =</span> emerg)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(trat_emerg) <span class="co">#Resultado: não teve efeito de tratamento.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>trat_emerg <span class="ot">=</span> <span class="fu">lm</span>(emerg <span class="sc">~</span> trat <span class="sc">+</span> <span class="fu">factor</span>(rep), <span class="at">data =</span> emerg)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(trat_emerg) <span class="co">#Resultado: não teve efeito de tratamento.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type II tests)
 
@@ -567,8 +707,8 @@ trat          3905   5  0.9415 0.4551
 factor(rep)    650   5  0.1566 0.9778
 Residuals   170033 205               </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dias_emerg <span class="ot">=</span> <span class="fu">lm</span>(emerg <span class="sc">~</span> dias <span class="sc">+</span> <span class="fu">factor</span>(rep), <span class="at">data =</span> emerg)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(dias_emerg) <span class="co">#Resultado: não teve efeito de dias.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>dias_emerg <span class="ot">=</span> <span class="fu">lm</span>(emerg <span class="sc">~</span> dias <span class="sc">+</span> <span class="fu">factor</span>(rep), <span class="at">data =</span> emerg)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(dias_emerg) <span class="co">#Resultado: não teve efeito de dias.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type II tests)
 
@@ -581,8 +721,13 @@ Residuals    67729 209
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
+<p>Gráfico</p>
+<div class="cell" data-hash="script_cache/html/unnamed-chunk-26_75e35c8bf78a5176b839d9eab3e5b56f">
+
+</div>
 
 
+</section>
 </section>
 </section>
 

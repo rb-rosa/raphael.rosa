@@ -10,7 +10,7 @@ execute:
 website:
   reader-mode: true
   page-navigation: true
-  title: "RB Rosa"
+  title: "Raphael B Rosa"
   navbar:
     style: "docked"
     pinned: true
@@ -22,7 +22,7 @@ website:
         file: index.qmd
       - text: "Mestrado"
         menu:
-          - text: "FIP606"
+          - text: "FIP606 - Projeto Final"
             file: script.qmd
        
     right:
