@@ -10,12 +10,12 @@ execute:
 website:
   reader-mode: true
   page-navigation: true
-  title: "**Raphael B Rosa**"
+  title: "**Rosa, R. B.**"
   navbar:
     style: "docked"
     pinned: true
     border: false
-    background: "light"
+    background: "info"
     search: true
     left:
       - text: "Home"
