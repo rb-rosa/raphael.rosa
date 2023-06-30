@@ -1,5 +1,5 @@
 ---
-title: "Projeto final"
+title: "**Projeto final**"
 format: html
 editor: visual
 
@@ -9,19 +9,88 @@ execute:
   warning: false
 ---
 
-# Variável cotilédones
+# Informações gerais
 
-## Análise exploratória dos dados
+-   Ensaio para avaliar a performance do fungicida CERTEZA^®^ N em tratamento de sementes no controle de *Rhizoctonia solani*, agente causal da prodridão de raízes em feijoeiro.
 
-### Importar dados
+-   Hipótese nula (H0): Não há diferença significativa entre os tratamentos.
+
+-   Hipótese alternativa (H1): Há pelo menos uma diferença significativa entre os tratamentos.
+
+-   Fator fungicida, seis níveis;
+
+-   Delineamento experimental em blocos casualizados (DBC);
+
+-   Inoculação de *R. solani* nas sementes;
+
+-   Ano 2021;
+
+```{r, echo=FALSE}
+library(rnaturalearth)
+library(rnaturalearthhires)
+
+latitude = -17.49
+longitude = -49.12
+dat <- data.frame(latitude, longitude)
+
+BRA <- ne_states(country = "Brazil", 
+                    returnclass = "sf")
+
+GO <- BRA|> filter(name_en == "Goiás")
+
+m <- ggplot(BRA) +
+geom_sf(color = "black",
+          fill = "white") +
+  geom_sf(data = GO, color = "black",
+            fill = "green")+
+    geom_point(data = dat, aes(longitude, latitude, 
+                               fill = "IF Goiano Campus Morrinhos"), alpha = 0.5)+
+  labs(x = "Longitude", y = "Latitude", 
+         title = "Localização do experimento", fill = "")
+  
+library(plotly)
+  ggplotly(m)
+```
+
+## Dados do experimento
 
 ```{r}
 library(tidyverse)
 library(readxl)
+
+emerg <- read_excel("dados/emergencia.xlsx")
+prod <- read_excel("dados/produtividade.xlsx")
 cot <- read_excel("dados/cotiledones.xlsx")
+
+library(DT)
+datatable(emerg,
+          extensions = 'Buttons',
+          options = list(
+            dom = 'Bfrtip',
+            buttons = c('copy', 'excel')))
+
+library(DT)
+datatable(prod,
+          extensions = 'Buttons',
+          options = list(
+            dom = 'Bfrtip',
+            buttons = c('copy', 'excel')))
+
+library(DT)
+datatable(cot,
+          extensions = 'Buttons',
+          options = list(
+            dom = 'Bfrtip',
+            buttons = c('copy', 'excel')))
 ```
 
-### Histograma para visualizar a distribuição dos dados
+# Análises estatísticas
+
+## Variável cotilédones
+
+### Análise exploratória dos dados
+
+#### Histograma para visualizar a distribuição dos dados
 
 ```{r}
 cot |>
@@ -30,7 +99,7 @@ cot |>
                  color = "black", fill = "orange")
 ```
 
-### Boxplot para visualizar a distribuição do número de cotilédones por tratamento
+#### Boxplot para visualizar a distribuição do número de cotilédones por tratamento
 
 ```{r}
 cot |> 
@@ -41,7 +110,7 @@ cot |>
   labs(x = "Tratamentos", y = "Número de cotilédones")
 ```
 
-### Número de cotilédones ao longo do tempo
+#### Número de cotilédones ao longo do tempo
 
 ```{r}
 cot2 <- cot |> 
@@ -65,16 +134,16 @@ cot2 |>
   facet_wrap(~trat)
 ```
 
-## Análises estatísticas
+### Análises estatísticas
 
 ```{r}
-teste = lm(cot ~ trat + dias + trat*dias + rep, data = cot)
+teste = lm(cot ~ trat + dias + trat*dias + factor(rep), data = cot)
 car::Anova(teste)
 
 # Resultado: os tratamentos não diferem, são iguais. Apenas o dia tem efeito. Elaborar um modelo novo. 
 ```
 
-### Regressão linear simples utilizando a função lm()
+#### Regressão linear simples utilizando a função lm()
 
 Tem-se uma variável quantitativa independente, dias, e uma dependente, cotilédones.
 
@@ -87,7 +156,7 @@ summary(m1)
 #O código m1 = lm(cot ~ dias, data = cot) realiza uma análise de regressão linear simples utilizando a função lm() no RStudio. Vamos detalhar o código linha por linha:m1 = lm(cot ~ dias, data = cot): Nesta linha, estamos criando um objeto chamado m1 que irá armazenar o modelo de regressão linear. A fórmula cot ~ dias especifica que estamos modelando a variável cot como uma função da variável dias. A opção data = cot indica que os dados a serem utilizados estão no conjunto de dados cot.
 ```
 
-### Gráfico do modelo de regressão polinomial de segunda ordem a ser ajustado (quadrático)
+#### Gráfico do modelo de regressão polinomial de segunda ordem a ser ajustado (quadrático)
 
 ```{r}
 #Em resumo, o código abaixo realiza a criação de um gráfico com pontos representando as médias de uma variável meancot para cada valor de dias. Além disso, ele ajusta uma linha suavizada correspondente a um modelo de regressão polinomial de segunda ordem. Modelo curvilinear.
@@ -104,7 +173,7 @@ cot3 |>
   theme_minimal()
 ```
 
-### Ajustar modelo
+#### Ajustar modelo
 
 ```{r, echo=FALSE}
 cot$dias2 = cot$dias^2 #criar variável quadrática dias2
@@ -112,7 +181,12 @@ m2 =lm(cot~dias + dias2, data=cot)
 summary(m2)
 ```
 
-### AIC
+```{r}
+library(report)
+report(m2)
+```
+
+#### AIC
 
 ```{r}
 AIC(m1, m2)
@@ -120,7 +194,7 @@ AIC(m1, m2)
 # A função AIC() é usada para calcular o Critério de Informação de Akaike (AIC, Akaike Information Criterion) para um ou mais modelos. O AIC é uma medida que avalia a qualidade do ajuste de um modelo, levando em consideração a capacidade de ajuste e a complexidade do modelo. A função AIC() retorna o valor do AIC para cada modelo especificado. Quanto menor o valor do AIC, melhor é o ajuste do modelo. Portanto, você pode comparar os valores do AIC dos dois modelos para determinar qual deles possui um ajuste melhor aos dados.
 ```
 
-### Colocar a equação no gráfico quadrático
+#### Colocar a equação no gráfico quadrático
 
 ```{r}
 cot3 <- cot |> 
@@ -144,17 +218,11 @@ cot3 |>
 
 ```
 
-# Variável produtividade
+## Variável produtividade
 
-## Análise exploratória dos dados
+### Análise exploratória dos dados
 
-### Importar dados
-
-```{r}
-prod <- read_excel("dados/produtividade.xlsx")
-```
-
-### Histograma para visualizar a distribuição dos dados
+#### Histograma para visualizar a distribuição dos dados
 
 ```{r}
 prod |>
@@ -173,34 +241,34 @@ prod|>
   labs(x = "Tratamentos", y = "Produtividade (kg/ha)")
 ```
 
-## Análises estatísticas
+### Análises estatísticas
 
-### Ajustar o modelo usando aov() DBC
+#### Ajustar o modelo usando aov() DBC
 
 ```{r}
 
 aov1 <- aov(prod ~ trat + as.factor(rep), data = prod)
 summary(aov1)
 
-#Resultado: há efeito de tratamento.
+#Resultado: há efeito de tratamento
 ```
 
-### Testar premissas da ANOVA
+#### Testar premissas da ANOVA
 
 ```{r}
 #Checar as premissas para verificar se o modelo está correto
 library(performance)
 check_heteroscedasticity(aov1)
 check_normality(aov1)
-#Resultado: dados homocedásticos mas apresentam normalidade.
+#Resultado: dados homocedásticos mas não apresentam normalidade
 
 library(DHARMa)
-plot(simulateResiduals(aov1)) #normalidade a direita e variância homogênea a esquerda
+plot(simulateResiduals(aov1)) #normalidade a direita e variância a esquerda
 
 hist(aov1$residuals)
 ```
 
-### Gráfico QQ (quantile-quantile)
+#### Gráfico QQ (quantile-quantile)
 
 ```{r}
 qqnorm(aov1$residuals)
@@ -209,7 +277,7 @@ qqline(aov1$residuals)
 #O gráfico QQ (quantile-quantile) é uma ferramenta útil para avaliar a normalidade dos resíduos de um modelo. Se os resíduos seguirem uma distribuição normal, os pontos no gráfico devem se aproximar de uma linha reta. A linha de referência adicionada com qqline() é uma reta que representa a distribuição normal esperada.
 ```
 
-### Análise de médias estimadas a partir do modelo ajustado
+#### Análise de médias estimadas a partir do modelo ajustado
 
 ```{r}
 library(emmeans)
@@ -217,7 +285,7 @@ aov1_means <- emmeans(aov1, ~ trat)
 aov1_means
 ```
 
-### Teste de Tukey
+#### Teste de Tukey
 
 ```{r}
 pwpm(aov1_means)
@@ -227,17 +295,11 @@ library(multcompView)
 cld(aov1_means)
 ```
 
-# Variável emergência
+## Variável emergência
 
-## Análise exploratória
+### Análise exploratória
 
-### Importar dados
-
-```{r}
-emerg <- read_excel("dados/emergencia.xlsx")
-```
-
-### Histograma para visualizar a distribuição dos dados
+#### Histograma para visualizar a distribuição dos dados
 
 ```{r}
 emerg |>
@@ -246,7 +308,7 @@ emerg |>
                  color = "black", fill = "orange")
 ```
 
-### Boxplot para visualizar a distribuição do número de plantas emergidas
+#### Boxplot para visualizar a distribuição do número de plantas emergidas
 
 ```{r}
 emerg|> 
@@ -256,7 +318,7 @@ emerg|>
   labs(x = "Tratamentos", y = "Plantas emergidas")
 ```
 
-### Número de plantas emergidas ao longo do tempo
+#### Número de plantas emergidas ao longo do tempo
 
 ```{r}
 emerg2 <- emerg |> 
@@ -280,7 +342,7 @@ emerg2|>
   facet_wrap(~trat)
 ```
 
-### Índice de velocidade de emergência
+#### Índice de velocidade de emergência
 
 ```{r}
 # Função para calcular o IVE para um tratamento específico
@@ -301,9 +363,9 @@ resultado_final <- data.frame(trat = resultados[, 1], IVE = resultados[, 2])
 print(resultado_final)
 ```
 
-## Análise dos dados
+### Análise dos dados
 
-### Ajustar o modelo usando aov() DBC
+#### Ajustar o modelo usando aov() DBC
 
 ```{r}
 teste_emerg = lm(emerg ~ trat + dias + trat*dias + factor(rep), data = emerg)
@@ -311,7 +373,7 @@ car::Anova(teste_emerg) # Resultado:significativo para tratamento e dias.
 
 ```
 
-### Ajustar o modelo aov() DBC para tratamento e dias
+#### Ajustar o modelo aov() DBC para tratamento e dias
 
 ```{r}
 trat_emerg = lm(emerg ~ trat + factor(rep), data = emerg)
@@ -321,9 +383,71 @@ dias_emerg = lm(emerg ~ dias + factor(rep), data = emerg)
 car::Anova(dias_emerg) #Resultado: não teve efeito de dias.
 ```
 
-Gráfico
+#### Regressão linear simples utilizando a função lm()
 
 ```{r}
+m3 =lm(emerg~dias, data=emerg)
+summary(m3)
 
+# Resultado: deu efeito de dias
 ```
 
+#### Gráfico do modelo de regressão polinomial de segunda ordem a ser ajustado (quadrático)
+
+```{r}
+#Em resumo, o código abaixo realiza a criação de um gráfico com pontos representando as médias de uma variável meancot para cada valor de dias. Além disso, ele ajusta uma linha suavizada correspondente a um modelo de regressão polinomial de segunda ordem. Modelo curvilinear.
+
+emerg3 <- emerg |> 
+  group_by(dias) |> 
+  summarize(meanemerg = mean(emerg))
+
+emerg3 |> 
+  ggplot(aes(dias, meanemerg))+
+  geom_point()+
+  scale_x_continuous(breaks = seq(5,22,2), limits = c(5,21))+
+  geom_smooth(se = F, formula = y ~ poly(x, 2), method = "lm", color = "black")+
+  theme_minimal()
+```
+
+#### Ajustar modelo
+
+```{r, echo=FALSE}
+emerg$dias2 = emerg$dias^2 #criar variável quadrática dias2
+m4 =lm(emerg~dias + dias2, data=emerg)
+summary(m4)
+```
+
+```{r}
+library(report)
+report(m4)
+```
+
+#### AIC
+
+```{r}
+AIC(m3, m4)
+```
+
+#### Colocar a equação no gráfico quadrático
+
+```{r}
+emerg3 <- emerg |> 
+  group_by(dias) |> 
+  summarize(meanemerg = mean(emerg), sd=sd(emerg))
+
+emerg3 |> 
+  ggplot(aes(dias, meanemerg))+
+  geom_point()+
+  scale_x_continuous(breaks = seq(5,22,2), limits = c(5,21))+
+  geom_smooth(se = F, formula = y ~ poly(x, 2), method = "lm", color = "black")+
+  theme_bw()+
+  annotate(geom = "text",
+           x = 21, y = 20,
+           label = "y = -64.8 + 18.53x -0.56233x²
+           R² = 0.84",
+           hjust = 1,5)+ 
+  geom_errorbar(aes(ymin = meanemerg - sd, 
+                    ymax = meanemerg + sd), 
+                width = 0.1)
+
+```
