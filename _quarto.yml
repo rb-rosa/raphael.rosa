@@ -10,7 +10,7 @@ execute:
 website:
   reader-mode: true
   page-navigation: true
-  title: "**Rosa, R. B.**"
+  title: "Rosa, R. B."
   navbar:
     style: "docked"
     pinned: true
