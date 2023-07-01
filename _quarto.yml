@@ -6,13 +6,11 @@ execute:
   cache: true
   freeze: auto
 
-
 website:
   reader-mode: true
   page-navigation: true
   title: "**Rosa, R. B.**"
   navbar:
-    style: "floating"
     pinned: true
     border: false
     background: "light"
@@ -37,6 +35,18 @@ website:
           - text: Reportar erro
             url:  mailto:rbarboza.rosa@gmail.com
   
-  page-footer: "Copyright 2023, Raphael B Rosa" 
+  page-footer:
+    border: true
+    left: "Copyright 2023, Raphael B Rosa"
+format:
+  html:
+    theme: 
+      light: default
+      dark: cyborg
+      
+    css: styles.css
+    toc: true
+editor: visual
+
   
 
