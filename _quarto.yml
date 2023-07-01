@@ -10,12 +10,12 @@ execute:
 website:
   reader-mode: true
   page-navigation: true
-  title: "Rosa, R. B."
+  title: "**Rosa, R. B.**"
   navbar:
-    style: "docked"
+    style: "floating"
     pinned: true
     border: false
-    background: "info"
+    background: "light"
     search: true
     left:
       - text: "Home"

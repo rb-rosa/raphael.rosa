@@ -263,7 +263,7 @@ check_normality(aov1)
 #Resultado: dados homocedásticos mas não apresentam normalidade
 
 library(DHARMa)
-plot(simulateResiduals(aov1)) #normalidade a direita e variância a esquerda
+plot(simulateResiduals(aov1)) #normalidade a esquerda e variância a direita
 
 hist(aov1$residuals)
 ```
